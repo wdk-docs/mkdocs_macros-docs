@@ -1,0 +1,2002 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A framework for macros and automation for mkdocs">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.7">
+    
+    
+      
+        <title>Advanced usage - mkdocs-macros</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.9d5733d3.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#advanced-usage" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="mkdocs-macros" class="md-header__button md-logo" aria-label="mkdocs-macros" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            mkdocs-macros
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Advanced usage
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/fralau/mkdocs_macros_plugin" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../pages/" class="md-tabs__link md-tabs__link--active">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tips/" class="md-tabs__link">
+        Faq
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../contribute/" class="md-tabs__link">
+      Contributing
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../changelog/" class="md-tabs__link">
+      Changelog
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../why/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="mkdocs-macros" class="md-nav__button md-logo" aria-label="mkdocs-macros" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    mkdocs-macros
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/fralau/mkdocs_macros_plugin" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          User Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          User Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pages/" class="md-nav__link">
+        Rich Markdown Pages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git_info/" class="md-nav__link">
+        Git information
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macros/" class="md-nav__link">
+        Writing modules
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pluglets/" class="md-nav__link">
+        Writing pluglets
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Advanced usage
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Advanced usage
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can-i-make-mkdocs-macros-build-process-to-fail-in-case-of-error-instead-of-displaying-the-error-on-the-page" class="md-nav__link">
+    Can I make mkdocs-macros build process to fail in case of error (instead of displaying the error on the page)?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-prevent-accidental-interpretation-of-jinja-like-statements" class="md-nav__link">
+    How to prevent accidental interpretation of "Jinja-like" statements?
+  </a>
+  
+    <nav class="md-nav" aria-label="How to prevent accidental interpretation of "Jinja-like" statements?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue" class="md-nav__link">
+    Issue
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#special-cases" class="md-nav__link">
+    Special Cases
+  </a>
+  
+    <nav class="md-nav" aria-label="Special Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-blocks-containing-similar-languages" class="md-nav__link">
+    Code Blocks Containing Similar Languages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snippets-containing-latex" class="md-nav__link">
+    Snippets Containing LaTeX
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-essential-notes" class="md-nav__link">
+    Two Essential Notes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solutions" class="md-nav__link">
+    Solutions
+  </a>
+  
+    <nav class="md-nav" aria-label="Solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution-1-exclude-a-page-from-the-rendering-process" class="md-nav__link">
+    Solution 1: Exclude a page from the rendering process
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-2-snippets-as-jinja2-strings-one-liners" class="md-nav__link">
+    Solution 2: Snippets as jinja2 strings (one-liners)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-3-explicitly-marking-the-snippets-as-raw" class="md-nav__link">
+    Solution 3: Explicitly marking the snippets as 'raw'
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-4-altering-the-syntax-of-jinja2-for-mkdocs-macros" class="md-nav__link">
+    Solution 4: Altering the syntax of jinja2 for mkdocs-macros
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#including-snippets-in-pages" class="md-nav__link">
+    Including snippets in pages
+  </a>
+  
+    <nav class="md-nav" aria-label="Including snippets in pages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-the-directory-of-the-includes" class="md-nav__link">
+    Changing the directory of the includes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-uses" class="md-nav__link">
+    Other uses
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#importing-macros-from-a-separate-file" class="md-nav__link">
+    Importing macros from a separate file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#including-external-yaml-files" class="md-nav__link">
+    Including external yaml files
+  </a>
+  
+    <nav class="md-nav" aria-label="Including external yaml files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-case" class="md-nav__link">
+    Use case
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declaring-external-yaml-files" class="md-nav__link">
+    Declaring external YAML files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merging-branches" class="md-nav__link">
+    Merging branches
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-can-and-cant-do-with-define_env" class="md-nav__link">
+    What you can and can't do with define_env()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directly-influencing-the-markdown-pages-generated" class="md-nav__link">
+    Directly influencing the markdown pages generated
+  </a>
+  
+    <nav class="md-nav" aria-label="Directly influencing the markdown pages generated">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-case-1-adding-meta-values-to-a-page" class="md-nav__link">
+    Use Case 1: Adding meta values to a page
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-case-2-modifying-the-raw_markdown-generated-for-a-page" class="md-nav__link">
+    Use Case 2: Modifying the raw_markdown generated for a page
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-notes-for-on_pre_page_macros-and-on_post_page_macros" class="md-nav__link">
+    Additional Notes for on_pre_page_macros() and on_post_page_macros()
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Notes for on_pre_page_macros() and on_post_page_macros()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#time-of-execution" class="md-nav__link">
+    Time of execution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-and-availability-of-envpage" class="md-nav__link">
+    Content and availability of env.page
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-the-raw-markdown" class="md-nav__link">
+    Accessing the raw markdown
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-of-global-variables" class="md-nav__link">
+    Use of Global variables
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-post-build-files-to-the-html-website" class="md-nav__link">
+    Adding post-build files to the HTML website
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding post-build files to the HTML website">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-case_1" class="md-nav__link">
+    Use case
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-post-build-actions" class="md-nav__link">
+    Solution: Post-Build Actions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Faq
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Faq" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Faq
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tips/" class="md-nav__link">
+        Tips and Tricks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../help/" class="md-nav__link">
+        Asking for help?
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why/" class="md-nav__link">
+        Why this project?
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can-i-make-mkdocs-macros-build-process-to-fail-in-case-of-error-instead-of-displaying-the-error-on-the-page" class="md-nav__link">
+    Can I make mkdocs-macros build process to fail in case of error (instead of displaying the error on the page)?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-prevent-accidental-interpretation-of-jinja-like-statements" class="md-nav__link">
+    How to prevent accidental interpretation of "Jinja-like" statements?
+  </a>
+  
+    <nav class="md-nav" aria-label="How to prevent accidental interpretation of "Jinja-like" statements?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue" class="md-nav__link">
+    Issue
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#special-cases" class="md-nav__link">
+    Special Cases
+  </a>
+  
+    <nav class="md-nav" aria-label="Special Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-blocks-containing-similar-languages" class="md-nav__link">
+    Code Blocks Containing Similar Languages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snippets-containing-latex" class="md-nav__link">
+    Snippets Containing LaTeX
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-essential-notes" class="md-nav__link">
+    Two Essential Notes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solutions" class="md-nav__link">
+    Solutions
+  </a>
+  
+    <nav class="md-nav" aria-label="Solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution-1-exclude-a-page-from-the-rendering-process" class="md-nav__link">
+    Solution 1: Exclude a page from the rendering process
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-2-snippets-as-jinja2-strings-one-liners" class="md-nav__link">
+    Solution 2: Snippets as jinja2 strings (one-liners)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-3-explicitly-marking-the-snippets-as-raw" class="md-nav__link">
+    Solution 3: Explicitly marking the snippets as 'raw'
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-4-altering-the-syntax-of-jinja2-for-mkdocs-macros" class="md-nav__link">
+    Solution 4: Altering the syntax of jinja2 for mkdocs-macros
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#including-snippets-in-pages" class="md-nav__link">
+    Including snippets in pages
+  </a>
+  
+    <nav class="md-nav" aria-label="Including snippets in pages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-the-directory-of-the-includes" class="md-nav__link">
+    Changing the directory of the includes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-uses" class="md-nav__link">
+    Other uses
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#importing-macros-from-a-separate-file" class="md-nav__link">
+    Importing macros from a separate file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#including-external-yaml-files" class="md-nav__link">
+    Including external yaml files
+  </a>
+  
+    <nav class="md-nav" aria-label="Including external yaml files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-case" class="md-nav__link">
+    Use case
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declaring-external-yaml-files" class="md-nav__link">
+    Declaring external YAML files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merging-branches" class="md-nav__link">
+    Merging branches
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-can-and-cant-do-with-define_env" class="md-nav__link">
+    What you can and can't do with define_env()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directly-influencing-the-markdown-pages-generated" class="md-nav__link">
+    Directly influencing the markdown pages generated
+  </a>
+  
+    <nav class="md-nav" aria-label="Directly influencing the markdown pages generated">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-case-1-adding-meta-values-to-a-page" class="md-nav__link">
+    Use Case 1: Adding meta values to a page
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-case-2-modifying-the-raw_markdown-generated-for-a-page" class="md-nav__link">
+    Use Case 2: Modifying the raw_markdown generated for a page
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-notes-for-on_pre_page_macros-and-on_post_page_macros" class="md-nav__link">
+    Additional Notes for on_pre_page_macros() and on_post_page_macros()
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Notes for on_pre_page_macros() and on_post_page_macros()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#time-of-execution" class="md-nav__link">
+    Time of execution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-and-availability-of-envpage" class="md-nav__link">
+    Content and availability of env.page
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-the-raw-markdown" class="md-nav__link">
+    Accessing the raw markdown
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-of-global-variables" class="md-nav__link">
+    Use of Global variables
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-post-build-files-to-the-html-website" class="md-nav__link">
+    Adding post-build files to the HTML website
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding post-build files to the HTML website">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-case_1" class="md-nav__link">
+    Use case
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-post-build-actions" class="md-nav__link">
+    Solution: Post-Build Actions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/fralau/mkdocs_macros_plugin/edit/master/webdoc/docs/advanced.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+
+<h1 id="advanced-usage">Advanced usage</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The purpose of this page is to provide information 
+for <strong>large projects</strong>, or <strong>projects with 
+specific technical requirements</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Migrations to mkdocs-macros</p>
+<p>It may be useful for mkdocs projects
+which that have decided to adopt mkdocs-macros at some
+stage in their existence.</p>
+</div>
+<h2 id="can-i-make-mkdocs-macros-build-process-to-fail-in-case-of-error-instead-of-displaying-the-error-on-the-page">Can I make mkdocs-macros build process to fail in case of error (instead of displaying the error on the page)?</h2>
+<p>Yes. In a context of CD/CI (Continuous Development/Continuous Integration)
+the generation of the mkdocs site can be part of a larger script.</p>
+<p>In that case, the expected behavior is not to display the error message
+in the respective webpage (default behavior), 
+but to terminate the build process with an error code.
+That is the best way to advertise that something went wrong.</p>
+<p>It should then be possible to consult the log (console output)
+and track down the offending markdown file and line number.</p>
+<p>To activate that behavior, set the <code>on_error_fail</code> parameter to <code>true</code>
+in the config file:</p>
+<pre><code class="language-yaml">plugins:
+  - search
+  - macros:
+      # toggle to true if you are in CD/CI environment
+      on_error_fail: true
+</code></pre>
+<p>In that case, an error in a macro will terminate 
+the mkdocs-macros build or serve process with an <strong>error 100</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Make the behavior depend on an environment variable</p>
+<p>As of version 1.2, <a href="https://www.mkdocs.org/user-guide/configuration/#environment-variables">mkdocs incorporates a yaml extension</a>
+that allows the value of a configuration option to be set 
+to the value of an environment variable.</p>
+</div>
+<p>You could therefore write:</p>
+<pre><code class="language-yaml">plugins:
+    - search
+    - macros:
+        on_error_fail: !ENV [MACRO_ERROR_FAIL, false]
+</code></pre>
+<p>Meaning that the parameter "<code>on_error_fail</code> should be set to the value of 
+<code>MACRO_ERROR_FAIL</code>; or if the environment variable is absent to <code>false</code>.</p>
+<h2 id="how-to-prevent-accidental-interpretation-of-jinja-like-statements">How to prevent accidental interpretation of "Jinja-like" statements?</h2>
+<h3 id="issue">Issue</h3>
+<p>The most frequent issue, when adding the mkdocs-macros plugin to an
+existing mkdocs project, is some markdown pages 
+may not be rendered correctly,
+or cause a syntax error, or some other error.</p>
+<p>The reason is that if Jinja2 template engine in the <strong>macro plugin</strong> 
+meets any text that has the standard markers (typically starting with <code>{%</code>} or
+<code>{{</code>) this will cause a conflict:
+it will try to interpret that text as a macro
+and fail to behave properly. </p>
+<p>The most likely places where this can occur are the following:</p>
+<table>
+<thead>
+<tr>
+<th>Location in Markdown file (Block or Inline)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Code</strong></td>
+<td>Documented Jinja2 statements (or similar syntax), LaTeX</td>
+</tr>
+<tr>
+<td><strong>Maths</strong></td>
+<td>LaTeX statements</td>
+</tr>
+<tr>
+<td><em><em>Elsewhere</em></em></td>
+<td>Some pre-existing templating or macro language, typically with some constructs starting with <code>{#</code> or <code>{{</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="admonition warning">
+<p class="admonition-title">Expected behaviors in case of failure</p>
+<ol>
+<li>
+<p>If the statement does not fit Jinja2 syntax, a syntax error
+   will be displayed in the rendered page.</p>
+</li>
+<li>
+<p>If mkdocs-macros mistakenly tries to interprets a syntactically
+valid Jinja2 statement
+containing a variable,
+the most likely result is that <strong>it will "eat" that statement</strong>:
+since it cannot make any sense of it, 
+<strong>it will silently replace it with an empty string</strong>.</p>
+</li>
+<li>
+<p>If the statement looks like a macro (callable, with arguments),
+   an error and traceback will be displayed in the page.</p>
+</li>
+</ol>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This question of accidental rendering is covered generally in the Jinja2 documentation as
+<a href="https://jinja.palletsprojects.com/en/2.11.x/templates/?highlight=raw#escaping">escaping</a>. </p>
+<p>Here we need to help <strong>mkdocs-macros</strong> clearly distinguish
+between  <strong>two types of Jinja2 statements</strong>:</p>
+<ol>
+<li><strong>Documentation statements</strong>, 
+   which must appear as-is in the final HTML pages,
+   and therefore <strong>must not</strong> be interpreted by mkdocs-macros.</li>
+<li><strong>Actionable Jinja2 statements</strong>: calls to variables or macros, etc.,
+   which mkdocs-macros <strong>must</strong> replace by their equivalent.</li>
+</ol>
+</div>
+<h3 id="special-cases">Special Cases</h3>
+<h4 id="code-blocks-containing-similar-languages">Code Blocks Containing Similar Languages</h4>
+<p>With MkDocs, this situation typically occurs when the website 
+is documenting an application that relies on a 
+"<a href="https://medium.com/@i5ar/template-languages-a7b362971cbc">djangolike/jinjalike language</a>" like:</p>
+<ul>
+<li>Django Template Language</li>
+<li>Jinja2 (Python)</li>
+<li>Nunjucks (Javascript)</li>
+<li>Twig (PHP)</li>
+<li>...</li>
+</ul>
+<p>This may also happen for pages that documents
+<a href="https://ansible-docs.readthedocs.io/zh/stable-2.0/rst/intro.html">Ansible</a> directives, which often contain
+<a href="https://ansible-docs.readthedocs.io/zh/stable-2.0/rst/playbooks_variables.html#using-variables-about-jinja2">variables expressed in a Jinja2 syntax</a>.</p>
+<h4 id="snippets-containing-latex">Snippets Containing LaTeX</h4>
+<p>With the plug-in enabled, LaTeX snippets 
+would fail to build because {{?}} will trigger the interpretation
+of a Jinja2 macro (since <code>{{</code> and <code>}}</code> are markers).LaTeX snippets</p>
+<p>For example, the following LaTeX snippet is used to draw a table:</p>
+<pre><code>```LaTeX
+\begin{tabular}{|ccc|}
+    \hline
+    2   &amp; 9     &amp; 4\\
+    7   &amp; \multicolumn{2}{c|} {\multirow{2}*{{?}}} \\
+    6   &amp;       &amp;\\
+    \hline
+\end{tabular}
+```
+</code></pre>
+<h3 id="two-essential-notes">Two Essential Notes</h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Fencing Jinja2 statements parts as blocks of code
+with the markdown convention
+(using three backticks or three tildes) <strong>will not prevent</strong>
+their interpretation, because this macros plugin intentionally ignores them.</p>
+<p>This is to allow advanced use cases where the content of the code block
+must be computed on the fly.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">No Risk of intereference of Jinja2 statements with HTML Rendering</p>
+<p>There is, of course, a <strong>third use of Jinja2 statements</strong>:
+MkDocs also use them in templates to render HTML pages. <strong>Fortunately,
+we can safely ignore that fact.</strong></p>
+<p><strong>There is in principle no risk that MkDocs will accidentally
+interpret any Jinja2 statements in markdown pages, during the HTML
+rendering process</strong>.</p>
+<p>The reason is that <strong>MkDocs contains a safety</strong>: <strong>it automatically
+escapes symbols such as '{'</strong>, which could have a meaning for the later
+rendering in HTML (which also uses Jinja2 templates). </p>
+<p>Here we are trying to solve a different problem:
+<strong>how to avoid interpretation</strong> of Jinja2 statements
+<strong>by mkdocs-macros</strong>,
+so that <strong>they actually appear in the HTML output</strong>?</p>
+</div>
+<h3 id="solutions">Solutions</h3>
+<h4 id="solution-1-exclude-a-page-from-the-rendering-process">Solution 1: Exclude a page from the rendering process</h4>
+<p><em>From version 0.5.7</em></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This solution is a quick fix, if you are "migrating"
+a pre-existing mkdocs project under mkdocs-macros, and
+some markdown pages fail, or do not display correctly.</p>
+<p>This will leave more time to implement the next solutions.</p>
+</div>
+<p>In the header of the markdown page, indicate that the markdown should
+be used "as-is" (no rendering of mkdocs-macros),
+by setting the <code>ignore_macros</code> meta-data key to the <code>true</code>value.</p>
+<pre><code class="language-yaml">---
+# YAML header
+ignore_macros: true
+---
+</code></pre>
+<p>Any other value than <code>true</code> (or an absence of this key), will be interpreted
+as a <code>false</code> value.</p>
+<h4 id="solution-2-snippets-as-jinja2-strings-one-liners">Solution 2: Snippets as jinja2 strings (one-liners)</h4>
+<p>This hack works for simple one-line snippets.
+Suppose you want to prevent the
+string <code>{{ 2 + 2 }}</code> from being interpreted. It would be sufficient to treat
+it as if it was a string in jinja2.</p>
+<pre><code>{{ "{{ 2 + 2 }}" }}
+</code></pre>
+<p>You could also use expressions that contain the double quote symbol,
+but in this case you must bracket them with simple quotes:</p>
+<pre><code>{{ '{{ "Hello world" }}' }}
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Triple quotes (<code>"""</code>) around strings are not allowed in Jinja2, so this
+hack cannot be used for multiline statements.</p>
+</div>
+<h4 id="solution-3-explicitly-marking-the-snippets-as-raw">Solution 3: Explicitly marking the snippets as 'raw'</h4>
+<p>The standard solution is to isolate each snippet of code that should not
+be interpreted, using the standard jinja2 <code>raw</code> directive,
+which exists for that purpose:</p>
+<pre><code>{% raw %}
+- task: "create a directory
+  file:
+    path: "{{ folder_path }}"
+    state: directory
+    recurse: true
+{% endraw %}
+</code></pre>
+<h4 id="solution-4-altering-the-syntax-of-jinja2-for-mkdocs-macros">Solution 4: Altering the syntax of jinja2 for mkdocs-macros</h4>
+<p>Sometimes the introduction of mkdocs-macros comes late in the chain, and the
+existing pages already contain a lot of Jinja2 statements that are
+should appear in the final HTML pages: escaping all of them
+would not really be an option.</p>
+<p>Or else, you do not wish to bother the writers of markdown pages
+with the obligation of escaping Jinja2 statements.</p>
+<div class="admonition tip">
+<p class="admonition-title">Solution</p>
+<p>Rather than refactoring all the existing markdown pages to fence
+those Jinja2 statements,
+it may be preferable to alter the markers for variables or blocks
+used in mkdocs-macros.</p>
+</div>
+<p>For example, you may want to replace the curly brackets by square ones,
+like this:</p>
+<pre><code># This is a title
+
+It costs [[ unit_price ]].
+
+[[% if unit_price &gt; 5 %]]
+This is expensive!
+[[% endif %]]
+</code></pre>
+<p>To obtain this result, simply add the following parameters in the
+<code>macros</code> section. There are two parameters for code blocks (start and
+end) and two for variables (start and end).</p>
+<pre><code>  - macros:
+      j2_block_start_string: '[[%'
+      j2_block_end_string: '%]]'
+      j2_variable_start_string: '[['
+      j2_variable_end_string: ']]'
+</code></pre>
+<p>You may, of course, chose the combination that best suits your needs.</p>
+<div class="admonition warning">
+<p class="admonition-title">Caution 1: You are walking out of the beaten path.</p>
+<p>Altering the standard markers used in jinja2 has far-reaching consequences,
+because it will oblige you henceforth use a new form for templates,
+which is specific to your project. When reading this
+documentation, you will have to mentally convert all the examples.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Caution 2: Use with discretion</p>
+<p>Errors in defining these new markers, or some
+accidental combinations of markers may have unpredictable
+consequences. <strong>Use with discretion, and at your own risk</strong>. In case
+of trouble, please do not expect help from the maintainers of this
+plugin.</p>
+</div>
+<h2 id="including-snippets-in-pages">Including snippets in pages</h2>
+<h3 id="usage">Usage</h3>
+<p>To include snippets (markdown files) within a markdown file, you may use the
+<code>include</code> directive from jinja2, directly in your markdown code e.g.:</p>
+<pre><code class="language-jinja2">## Paragraph
+
+</code></pre>
+<p>Including another markdown file <strong>will</strong> therefore execute the macros.</p>
+<p>By default the root directory for your included files is in
+<a href="https://www.mkdocs.org/user-guide/configuration/#docs_dir">docs_dir</a>,</p>
+<h3 id="changing-the-directory-of-the-includes">Changing the directory of the includes</h3>
+<p>You may change the directory of the includes, by setting the
+<code>include_dir</code> parameter in the plugin's configuration in the yaml file,
+e.g.:</p>
+<pre><code>plugins:
+  - search
+  - macros:
+      include_dir: include
+</code></pre>
+<p>In this case, all files to be included will be found in the <code>include</code>
+subdirectory of your project's directory.</p>
+<p>These are the advantages for using a distinct directory for includes:</p>
+<ul>
+<li>The files to be included ("partials") will not be automatically
+    rendered into html</li>
+<li>A better separation between normal pages and included pages</li>
+</ul>
+<p>If you often use <code>mkdocs serve</code>, modifying an included page <em>will</em>
+auto-reload the pages in the browser (the directory is added to the list
+of the "watched" directories).</p>
+<h3 id="other-uses">Other uses</h3>
+<p>You could conceivably also include HTML files, since markdown may
+contain pure HTML code:</p>
+<pre><code class="language-jinja2">
+</code></pre>
+<p>The above would fetch the file from a in a html subdirectory (by
+default: <code>docs/html</code>).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The external HTML file must not contain any <code>&lt;HTML&gt;</code> and <code>&lt;BODY&gt;</code> tags,
+as this will likely break the page.</p>
+<p>Also, you do not need to define any header, footer or
+navigation, or formatting instructions, 
+as this is already taken care of by MkDocs.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To further enhance your website, you could use the <code>include()</code> macro to 
+insert automatically generated files that contain 
+regularly updated information
+(markdown or html), e.g.: </p>
+<ul>
+<li>last result of compilation / deployment, </li>
+<li>information contained in a database,</li>
+<li>etc.</li>
+</ul>
+</div>
+<h2 id="importing-macros-from-a-separate-file">Importing macros from a separate file</h2>
+<p><em>From version 0.5.10</em></p>
+<p>On the other hand, it is possible to place your definitions
+in a single file, which you can import
+(see <a href="https://jinja.palletsprojects.com/en/2.11.x/templates/#import">Jinja2 documentation</a>):</p>
+<pre><code>{% import 'includes.md' as includes %}
+</code></pre>
+<p>(in this case, all macros defined in the imported file 
+will be available with a prefixed notation 
+as, e.g.  <code>includes.myfunction</code>)</p>
+<p>You may also write:</p>
+<pre><code>{% from 'includes.md' import myfunction %}
+</code></pre>
+<p>By default the root directory for your included files is in <a href="https://www.mkdocs.org/user-guide/configuration/#docs_dir">docs_dir</a>, in other words your <code>docs</code>
+directory. </p>
+<p>You can change this directory <a href="#changing-the-directory-of-the-includes">by setting <code>include_dir</code> parameter
+in the config file</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><em>For versions &lt; 0.5.10</em></p>
+<p>Macros were imported as variables in the page context. It means
+what they were not available from imported definition files,
+which did not have access to this context
+(see <a href="https://jinja.palletsprojects.com/en/2.11.x/templates/#import-visibility">explanation in Jinja2 documentation</a>).</p>
+<p>There workaround is to force Jinja2 to use the current page's context, e.g.:  </p>
+<ul>
+<li><code>{% import 'includes.md' as includes with context%}</code> </li>
+<li><code>{% from 'includes.md' import myfunction with context%}</code>.</li>
+</ul>
+</div>
+<p>Treating macros as variables?</p>
+<hr />
+<p><em>From version 0.5.10.</em> </p>
+<p>The <code>@env.macro</code> decorator inserts macros into the <code>env.macros</code> dictionary.
+Macros thus defined will be
+part of the <strong>globals</strong> of the Jinja2 environment
+(see <a href="https://jinja.palletsprojects.com/en/2.11.x/templates/#import-visibility">explanation in Jinja2 documentation</a>.</p>
+<p>In principle you could <em>also</em> insert functions (or any other callable) into
+the <code>env.variables</code> dictionary, e.g.:</p>
+<pre><code class="language-Python">def foo(...):
+    ...
+    return ...
+
+env.variables['foo'] = foo
+</code></pre>
+<p>In this case, functions will also be available as Jinja2 macros, 
+from the markdown pages.</p>
+<p>There is no particular reason, at this stage, to do this, but
+this information is given as clarificaiton, or 
+in case it could find some application in the future.</p>
+<div class="admonition warning">
+<p class="admonition-title">Difference with default method</p>
+<p>The difference is that macros defined in this way 
+will be part of the <strong>context</strong>
+of each page (together with any other variables). 
+They will not be available
+for <code>{% import .. %}</code> statements, unless you add the <code>with context</code> clause.</p>
+<p>You might also notice some (unsupported) side-effects when
+executing <code>{{ macros_info() }}</code> (those functions might not
+necessarily be listed where you would expect them).</p>
+</div>
+<h2 id="including-external-yaml-files">Including external yaml files</h2>
+<h3 id="use-case">Use case</h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If the size of your <code>mkdocs.yml</code> file getting <strong>too large</strong> because
+of variables?
+Why not <strong>splitting</strong> this file into separate files? </p>
+</div>
+<p>When a documentation site is growing (number of pages and complexity),
+the number of variables in the <code>extra:</code> section of the yaml
+configuration file may start to increase fast. </p>
+<p>At this point the config file contains not only configuration data to help
+build the website (environment, repetitive snippets, etc.), but <strong>it has
+started including information that is pertinent to the subject of the documentation</strong>.</p>
+<p>The <strong>solution</strong> is to <strong>split</strong> the config file, 
+by using <strong>external yaml files</strong>, which contain the
+domain-specific information. This creates a separation of concerns.</p>
+<p>It also reduces the number of modifications to the configuration file,
+and thus the risk that it becomes accidentally corrupted.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You may also want to generate some of these external yaml
+files automatically, e.g. from a database.</p>
+</div>
+<h3 id="declaring-external-yaml-files">Declaring external YAML files</h3>
+<p>To include external data files, add the <code>include_yaml</code> to the
+configuration file of mkdocs (<code>mkdocs.yml</code> by default), followed by the
+list of external filenames or <code>key: filename</code> pairs:</p>
+<pre><code class="language-yaml">plugins:
+    - search
+    - macros:
+        include_yaml:
+          - data/foo.yaml
+          - data/bar.yaml
+          - key: data/baz.yaml
+</code></pre>
+<p>The default directory is the project's root.</p>
+<p>Upon loading, the plugin will read each yaml file in order and merge the
+variables with those read from the main configuration file. If an entry is
+specified in the <code>key: filename</code> format, the data from the file will be assigned
+to the <code>key</code>. In case of conflicts, the latest value will override the earlier
+ones.</p>
+<h3 id="merging-branches">Merging branches</h3>
+<p>The "branches" of the trees of dictionaries will be merged and, in case
+of conflict, the plugin will attempt to privilege the latest branch.</p>
+<div class="admonition warning">
+<p class="admonition-title">Caution</p>
+<p>The purpose of this feature is only to allow a separation of concerns.
+For organizational purposes, you should separate your yaml files in a
+clean way, so that each yaml file covers a specific part of the tree.
+Otherwise, this might create complicated cases were the merging
+algorithm might not work as you expect.</p>
+</div>
+<h2 id="what-you-can-and-cant-do-with-define_env">What you can and can't do with <code>define_env()</code></h2>
+<p>The fact is that you <strong>cannot</strong> actually access page information
+in the <code>define_env()</code> function, since
+it operates at the configuration stage of the page building process 
+(during the <a href="https://www.mkdocs.org/user-guide/plugins/#on_config"><code>on_config()</code> event of MkDocs</a>). 
+At that point, <strong>you don't have access to specific pages</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">Vital Note on mkdocs-macros</p>
+<p>Of course, you <strong>can</strong> declare <strong>macros</strong>, which <strong>appear</strong> to act on pages. 
+But realize that these are only <strong>declarations</strong> and that their
+execution is <strong>deferred</strong>. 
+The macros will actually be run <strong> later</strong> 
+(by MkDocs' <a href="https://www.mkdocs.org/user-guide/plugins/#on_page_markdown"><code>on_page_markdown()</code> event</a>),
+just before the markdown is rendered. The framework is so organized
+that, in macros, you are actually "talking" about objects that don't exist yet.</p>
+<p>So you <strong>cannot</strong> influence the rendering process other than by
+adding macros, variables and filters to <code>mkdocs_macros</code>.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Do not modify system entities in <code>env.variables</code></p>
+<p>Also, the system information in <code>env.variables</code>
+is for <strong>reading</strong> purposes.
+You could modify it in your Python code, of course (at your own peril).
+But <strong>by design</strong>, it may have no effect on the mechanics
+of <code>mkdocs</code> (these are shallow copies). </p>
+<p>Whatever you do in that way, is likely to be branded <strong>black magic</strong>.</p>
+</div>
+<h2 id="directly-influencing-the-markdown-pages-generated">Directly influencing the markdown pages generated</h2>
+<p><em>From version 0.5.2</em></p>
+<p>There are specific cases where you want your module code to be able to modify
+the markdown code of a <strong>page, without using macros</strong>.</p>
+<p>The proper time to do that, would be 
+<strong>before or after</strong> the macros (Jinja2 directives) have been processed.</p>
+<div class="admonition note">
+<p class="admonition-title">Technical note: a limitation of the macros mechanism</p>
+<p>The <code>define_env()</code> function operates at the time when MkDocs prepares the
+configuration of website (the <code>on_config()</code> event). This is a 
+<a href="https://www.mkdocs.org/user-guide/plugins/#global-events">global event</a>, i.e. any change made at this point will affect the whole
+website. </p>
+<p>The limitation is that the <code>define_env()</code> function is
+"aware" of the general configuration, not of the content of single pages.</p>
+<p><strong>True</strong>,
+it allows you to declare <strong>macros</strong> which will be interpreted later,
+for each page (on the <code>on_page()</code> event). <strong>But</strong> it won't
+allow you to modify pages outside of that mechanism.</p>
+</div>
+<h3 id="use-case-1-adding-meta-values-to-a-page">Use Case 1: Adding meta values to a page</h3>
+<p>There are cases where you want to make modifications to a specific 
+markdown page, based on the content of that page.</p>
+<p>Typically, you may want to programmatically add some meta values to a page,
+to be forwarded to the HTML template.</p>
+<p>For example you'd want to be able to always have a value for this:</p>
+<pre><code class="language-HTML">&lt;meta name=&quot;description&quot; content=&quot;{{ page.meta.description }}&quot; /&gt;
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Note that in the snippet above, Jinja2 is used by
+MkDocs to produce HTML pages.
+This is <strong>completely distinct</strong> from MkDocs-macros' use of Jinja2
+on Markdown pages (it occurs at a later stage).</p>
+</div>
+<p>Normally <a href="https://www.mkdocs.org/user-guide/writing-your-docs/#meta-data">metadata would be defined in the YAML header of the markdown page</a>:</p>
+<pre><code class="language-YAML">---
+title: my title
+description: This is a description
+---
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Issue</p>
+<p><strong>But supposing this was not the case ?</strong> Or supposing you want
+to check or alter that information?</p>
+</div>
+<h3 id="use-case-2-modifying-the-raw_markdown-generated-for-a-page">Use Case 2: Modifying the raw_markdown generated for a page</h3>
+<p>You might still change that raw markdown, if you really want,
+e.g. by adding "footer" information at the bottom of each page.</p>
+<h3 id="solution">Solution</h3>
+<p>To act on such cases that vary with each markdown page (and depend on
+each page, not on the general configuration), 
+you may use the two functions, before the markdown is actually rendered:</p>
+<ol>
+<li><code>on_pre_page_macros(env)</code> : <strong> before </strong> the macros are interpreted
+   (macros are still present).</li>
+<li><code>on_post_page_macros(env)</code> : <strong> after </strong> the macros are rendered
+   (macros have been interpreted). At that point, you have a string <code>env.raw_markdown</code> property available, which contains the markdown <em>after</em> the conversion of the Jinja2 template.</li>
+</ol>
+<p>For example:</p>
+<pre><code class="language-python">def on_post_page_macros(env):
+    &quot;&quot;&quot;
+    Actions to be done after macro interpretation,
+    when the markdown is already generated
+    &quot;&quot;&quot;
+    # This information will get carried into the HTML template.
+    env.page.meta['description'] = ...
+
+    # This will add a (Markdown or HTML) footer
+    footer = '\n...'
+    env.raw_markdown += footer
+</code></pre>
+<h3 id="additional-notes-for-on_pre_page_macros-and-on_post_page_macros">Additional Notes for <code>on_pre_page_macros()</code> and <code>on_post_page_macros()</code></h3>
+<h4 id="time-of-execution">Time of execution</h4>
+<p>They are executed by the <a href="https://www.mkdocs.org/user-guide/plugins/#on_page_markdown"><code>on_page_markdown()</code> event of MkDocs</a>:</p>
+<ul>
+<li><strong> before</strong> the rendering the page</li>
+<li><strong> before or after</strong> interpretation of the macros, respectively</li>
+</ul>
+<p>They operates on a single page.</p>
+<h4 id="content-and-availability-of-envpage">Content and availability of <code>env.page</code></h4>
+<p>The <code>page</code> attribute of <code>env</code>, which contains much information specific to the
+page (title, filename, metadata, etc.), is available only from the point
+of <code>on_pre_page_macros()</code> on. </p>
+<p>It is <strong>not</strong> available for the <code>define_env(env)</code> function.</p>
+<p>It contains notably the following information:</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>title of the page</td>
+</tr>
+<tr>
+<td><code>abs_url</code></td>
+<td>the absolute url of the page from the top of the hierarchy</td>
+</tr>
+<tr>
+<td><code>canonical_url</code></td>
+<td>the complete url of the page (typically with <code>https://...</code>)</td>
+</tr>
+<tr>
+<td><code>markdown</code></td>
+<td>the whole markdown code (<strong>before</strong> interpretation; for the <strong>interpreted markdown</strong>, use instead <code>env.raw_markdown</code>, see below).</td>
+</tr>
+<tr>
+<td><code>meta</code></td>
+<td>the meta data dictionary, as updated (typically) from the YAML header.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="accessing-the-raw-markdown">Accessing the raw markdown</h4>
+<p>For the <code>on_post_page_macros()</code> event,
+the <code>env</code> object contains a <code>raw_markdown</code> attribute,
+which contains the markdown with the macros already interpreted.</p>
+<div class="admonition tip">
+<p class="admonition-title">In case of need</p>
+<p>If the code of the macro modifies <code>env.raw_markdown</code>,
+the modifications <strong>will</strong> be reflected in the final HTML page.</p>
+</div>
+<h4 id="use-of-global-variables">Use of Global variables</h4>
+<p>To facilitate the communication between <code>define_env()</code> and 
+<code>on_page_markdown()</code> you may want to define <strong>global variables</strong> within
+your module. For a refresher on this, 
+<a href="https://www.w3schools.com/python/gloss_python_global_variables.asp">see the summary on W3 Schools</a>. </p>
+<h2 id="adding-post-build-files-to-the-html-website">Adding post-build files to the HTML website</h2>
+<p><em>From version 0.5</em></p>
+<h3 id="use-case_1">Use case</h3>
+<p>Sometimes, you want your Python code to add
+some files to the HTML website that
+MkDocs is producing, completely aside of MkDoc's usual production workflow.</p>
+<p>These could be:</p>
+<ul>
+<li>an extra HTML page</li>
+<li>an additional or updated image</li>
+<li>a RSS feed</li>
+<li>a form processor (written for example in the php language)</li>
+<li>....</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The logical idea is to add files to the site (HTML) directory,
+which is given by <code>env.conf['site_dir']</code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Beware the of the 'disappeared file' trap</p>
+<p>One problem will occur if you attempt to add files to the site directory
+from within the <code>define_env()</code> function in your macro module.</p>
+<p><strong>The file will be created, but nevertheless it is going to "disappear".</strong></p>
+<p>The reason is that the code of <code>define_env()</code> is executed during the 
+<code>on_config</code> event of MkDocs; <strong>and you can expect the site directory
+to be wiped out later, during the build phase (which produces
+the HTML files)</strong>. So, of course, the files you
+just created will be deleted.</p>
+</div>
+<h3 id="solution-post-build-actions">Solution: Post-Build Actions</h3>
+<p>The solution to do that, is to perform those additions
+as <strong>post-build</strong> actions (i.e. executed with <code>on_post_build</code> event).</p>
+<p>Here is an example. Suppose you want to add a special file (e.g. HTML).</p>
+<pre><code class="language-Python">import os
+MY_FILENAME = 'foo.html'
+my_HTML = None
+
+def define_env(env):
+    &quot;Definition of the module&quot;
+
+    # put here your HTML content
+    my_HTML = ......
+
+
+def on_post_build(env):
+    &quot;Post-build actions&quot;
+
+    site_dir = env.conf['site_dir']
+    file_path = os.path.join(site_dir, MY_FILENAME)
+    with open(file_path, 'w') as f:
+        f.write(my_HTML)
+</code></pre>
+<p>The mkdocs-macros plugin will pick up that function and execute it during
+as on <code>on_post_build()</code> action.</p>
+<div class="admonition warning">
+<p class="admonition-title">Argument of <code>on_post_build()</code></p>
+<p>In this case, the argument is <code>env</code> (as for <code>define_env()</code>);
+it is <strong>not</strong>
+<code>config</code> as in the <code>on_post_build()</code> method in an MkDocs plugin.</p>
+<p>If you want to get the plugin's arguments, you can find them in the
+<code>env.conf</code> dictionary.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Global variables</p>
+<p>To facilitate the communication between <code>define_env()</code> and 
+<code>on_post_build</code> you may want to define <strong>global variables</strong> within
+your module (in this example: <code>MY_FILENAME</code> and <code>my_HTML</code>).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not forget that any variable assigned for the first time
+within a function is <em>by default</em>
+a <strong>local</strong> variable: its content will be lost once the function
+is fully executed.</p>
+<p>In the example above, <code>my_HTML</code> <strong>must</strong> appear in the global definitions;
+which is why it was assigned an empty value.</p>
+</div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../pluglets/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Writing pluglets" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Writing pluglets
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../tips/" class="md-footer__link md-footer__link--next" aria-label="Next: Tips and Tricks" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Tips and Tricks
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Laurent Franceschetti, 2020. This work is licensed under CC BY-SA 4.0.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.tabs"], "search": "../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e87a5f81.min.js"></script>
+      
+    
+  </body>
+</html>

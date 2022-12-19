@@ -1,0 +1,1083 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A framework for macros and automation for mkdocs">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.7">
+    
+    
+      
+        <title>Writing pluglets - mkdocs-macros</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.9d5733d3.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#writing-pluglets" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="mkdocs-macros" class="md-header__button md-logo" aria-label="mkdocs-macros" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            mkdocs-macros
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Writing pluglets
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/fralau/mkdocs_macros_plugin" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../pages/" class="md-tabs__link md-tabs__link--active">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tips/" class="md-tabs__link">
+        Faq
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../contribute/" class="md-tabs__link">
+      Contributing
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../changelog/" class="md-tabs__link">
+      Changelog
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../why/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="mkdocs-macros" class="md-nav__button md-logo" aria-label="mkdocs-macros" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    mkdocs-macros
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/fralau/mkdocs_macros_plugin" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          User Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          User Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pages/" class="md-nav__link">
+        Rich Markdown Pages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git_info/" class="md-nav__link">
+        Git information
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macros/" class="md-nav__link">
+        Writing modules
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Writing pluglets
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Writing pluglets
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    Definition
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-existing-pluglets" class="md-nav__link">
+    Using existing pluglets
+  </a>
+  
+    <nav class="md-nav" aria-label="Using existing pluglets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#declaring-a-pluglet-for-an-mkdocs-project" class="md-nav__link">
+    Declaring a pluglet for an MkDocs project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-installable-pluglets" class="md-nav__link">
+    Auto-installable pluglets
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-a-new-pluglet" class="md-nav__link">
+    Implementing a new pluglet
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementing a new pluglet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-principles" class="md-nav__link">
+    General Principles
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-name-a-pluglet" class="md-nav__link">
+    How to name a pluglet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typical-structure-of-a-pluglet" class="md-nav__link">
+    Typical structure of a pluglet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-write-the-code" class="md-nav__link">
+    How to write the code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced/" class="md-nav__link">
+        Advanced usage
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Faq
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Faq" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Faq
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tips/" class="md-nav__link">
+        Tips and Tricks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../help/" class="md-nav__link">
+        Asking for help?
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why/" class="md-nav__link">
+        Why this project?
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    Definition
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-existing-pluglets" class="md-nav__link">
+    Using existing pluglets
+  </a>
+  
+    <nav class="md-nav" aria-label="Using existing pluglets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#declaring-a-pluglet-for-an-mkdocs-project" class="md-nav__link">
+    Declaring a pluglet for an MkDocs project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-installable-pluglets" class="md-nav__link">
+    Auto-installable pluglets
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-a-new-pluglet" class="md-nav__link">
+    Implementing a new pluglet
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementing a new pluglet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-principles" class="md-nav__link">
+    General Principles
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-name-a-pluglet" class="md-nav__link">
+    How to name a pluglet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typical-structure-of-a-pluglet" class="md-nav__link">
+    Typical structure of a pluglet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-write-the-code" class="md-nav__link">
+    How to write the code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/fralau/mkdocs_macros_plugin/edit/master/webdoc/docs/pluglets.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+
+<h1 id="writing-pluglets">Writing pluglets</h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>New, as of version 0.4.20.</p>
+</div>
+<h2 id="introduction">Introduction</h2>
+<h3 id="definition">Definition</h3>
+<p>A <strong>pluglet</strong> is a preinstalled module for mkdocs-macros, which is
+installed thanks to Pythons <a href="https://packaging.python.org/tutorials/packaging-projects/">standard packaging process</a>.</p>
+<p>The only
+thing needed (as a bare minimum), is to implement a single function,
+<code>define_env()</code>:</p>
+<pre><code class="language-python">
+def define_env(env):
+    ....
+
+</code></pre>
+<div class="admonition question">
+<p class="admonition-title">What makes a pluglet different from a plain module?</p>
+<p>The only difference between a <strong>pluglet</strong> and an ordinary
+mkdocs-macros <a href="macros"><strong>module</strong></a> (typically <code>main.py</code> or <code>main</code> directory),
+is that the pluglet is preinstalled. In this way, you can
+benefit from pluglets written by others, and you could share the
+pluglets that you wrote.</p>
+<p>A pluglet can do two things that any mkdocs-macro module can do:</p>
+<ol>
+<li>Define macros.</li>
+<li>Perform changes on the architecture of the website.</li>
+</ol>
+</div>
+<div class="admonition question">
+<p class="admonition-title">What makes a pluglet different from a plugin?</p>
+<p>A <strong>pluglet</strong> is distinct from an <strong><a href="https://www.mkdocs.org/user-guide/plugins/">MkDocs plugin</a></strong>. A <strong>pluglet</strong> is a more lightweight tool that sits
+over the mkdocs-macros plugin and uses the framework provided by it.</p>
+<p>There is no need to implement a subclass of the <code>BasePlugin</code> class,
+only to declare a <code>define_env(env)</code> function.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Could a pluglet do everything a plugin can do?</p>
+<p>The answer is, <em>quite a lot, but not everything</em>. 
+MkDocs plugins are able to rely on <a href="https://www.mkdocs.org/user-guide/plugins/#events">a wide range of 
+events</a>,
+which are hooks for acting on the website at various stages of the config/build process.</p>
+<p>A mkdocs-macros pluglet operates mostly on the <a href="https://www.mkdocs.org/user-guide/plugins/#on_config">on_config</a> event of MkDocs thanks to
+<code>define_env(env)</code>hook; but <a href="macros/#list-of-hook-functions-within-a-module">its use can be extended thanks to other hooks</a>.</p>
+</div>
+<h2 id="using-existing-pluglets">Using existing pluglets</h2>
+<h3 id="declaring-a-pluglet-for-an-mkdocs-project">Declaring a pluglet for an MkDocs project</h3>
+<p>For your specific documentation project, you may call already
+installed pluglets (which would appear with <code>pip list</code>):</p>
+<pre><code class="language-bash">pip list | grep mkdocs-macros
+</code></pre>
+<p>Use the <code>modules</code> argument.<br />
+It is a list, so that you can declare one or more:</p>
+<p>e.g. :</p>
+<pre><code class="language-yaml">plugins:
+  ...
+  - macros:
+      modules: [mkdocs_macros_test]
+</code></pre>
+<p>or: </p>
+<pre><code class="language-yaml">plugins:
+  ...
+  - macros:
+      modules: [mkdocs_macros_foo, mkdocs_macros_bar]
+</code></pre>
+<h3 id="auto-installable-pluglets">Auto-installable pluglets</h3>
+<p><strong>Every pluglet specified in the <code>modules</code>list should be available.</strong></p>
+<p>However, if the pluglet cannot be found, mkdocs will attempt to install it
+(with <code>pip3 install</code>) from the standard repositories (<a href="https://pypi.org/">Pypi</a> and others <a href="https://pip.pypa.io/en/stable/topics/configuration/#configuration-files">defined locally</a>). If not, mkdocs will fail and exit.</p>
+<div class="admonition tip">
+<p class="admonition-title">Make installations easier!</p>
+<p>The purpose of this feature is to facilitate the management of environments with several mkdocs websites, typically when a pluglet is designed for a whole
+company, project, etc.</p>
+<p>In this way, the macros and filters declared in the pluglet will work out
+of the box, as long as the pluglet is properly defined in the config file
+(and the pluglet is auto-installable).</p>
+</div>
+<p>In some cases, the name of the source package i:</p>
+<pre><code class="language-yaml">plugins:
+  ...
+  - macros:
+      modules: [mkdocs-macros-test:mkdocs_macros_test]
+</code></pre>
+<p>In the example above <code>mkdocs-macros-test</code> is the package source, and
+<code>mkdocs_macros_test</code> is the package name for the <code>import</code> statement.</p>
+<p>If those names are correct everything should fall into place when you type the <code>mkdocs serve</code> or <code>mkdocs build</code> commands.</p>
+<h2 id="implementing-a-new-pluglet">Implementing a new pluglet</h2>
+<h3 id="general-principles">General Principles</h3>
+<p><strong>You can develop pluglets for mkdocs-macros-plugin
+and publish them on <a href="https://github.com/">github</a> and 
+<a href="https://pypi.org/">pypi</a></strong>.</p>
+<h3 id="how-to-name-a-pluglet">How to name a pluglet</h3>
+<p>The names for pluglets are not constrained. As a <strong>naming convention</strong>, we
+strongly recommend:</p>
+<ul>
+<li>a package name starting with <code>mkdocs-macros-</code></li>
+<li>an import name starting <code>mkdocs_macros_</code>, i.e. replacing the hyphen (<code>-</code>) symbol by underscore (<code>_</code>).</li>
+</ul>
+<h3 id="typical-structure-of-a-pluglet">Typical structure of a pluglet</h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You will find a simple example with the <a href="https://github.com/fralau/mkdocs-macros-test"><code>mkdocs-test</code> pluglet, available on gihub</a>.</p>
+</div>
+<p>The <code>setup.py</code> file will typically have this form:</p>
+<pre><code class="language-python">
+from setuptools import setup
+
+setup(
+    name='mkdocs-macros-foo',
+    version='0.0.1',
+    description=&quot;Foo library for macros plugin&quot;,
+    packages=['mkdocs_macros_foo'],
+    license='&lt;YOUR CHOICE&gt;',
+    author='Joe Bloe'
+)
+
+</code></pre>
+<p>The structure will be typically like so:</p>
+<pre><code>├── LICENSE.md
+├── README.md
+├── mkdocs_macros_test.py
+└── setup.py
+</code></pre>
+<p>or like so (if it is more complex):</p>
+<pre><code>├── LICENSE.md
+├── README.md
+├── mkdocs_macros_test
+│   └── __init__.py
+|   └── util.py
+└── setup.py
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The subdirectory containing
+the code will have to be called <code>mkdocs_macros_foo</code> (underscores).</p>
+</div>
+<h3 id="how-to-write-the-code">How to write the code</h3>
+<p>For the code itself, proceed as for a <a href="../macros">usual module</a>:</p>
+<pre><code class="language-python">&quot;&quot;&quot;
+Code of the pluglet
+&quot;&quot;&quot;
+
+def test_fn(x:float):
+    &quot;Test function&quot;
+    return x * 4 / 3
+
+def say_hello(s:str):
+    &quot;Test procedure&quot;
+    return &quot;&lt;i&gt;Hello %s&lt;/i&gt;&quot; % s
+
+def define_env(env):
+    &quot;Declare environment for jinja2 templates for markdown&quot;
+
+    for fn in [test_fn, say_hello]:
+        env.macro(fn)
+
+
+    # you could, of course, also define a macro here:
+    @env.macro
+    def test_fn2(s:str):
+        return &quot;I am displaying this: %s&quot; % s
+
+</code></pre>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../macros/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Writing modules" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Writing modules
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../advanced/" class="md-footer__link md-footer__link--next" aria-label="Next: Advanced usage" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Advanced usage
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Laurent Franceschetti, 2020. This work is licensed under CC BY-SA 4.0.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.tabs"], "search": "../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e87a5f81.min.js"></script>
+      
+    
+  </body>
+</html>

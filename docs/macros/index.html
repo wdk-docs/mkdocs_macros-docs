@@ -1,0 +1,1513 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A framework for macros and automation for mkdocs">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.7">
+    
+    
+      
+        <title>Writing modules - mkdocs-macros</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.9d5733d3.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#writing-modules" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="mkdocs-macros" class="md-header__button md-logo" aria-label="mkdocs-macros" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            mkdocs-macros
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Writing modules
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/fralau/mkdocs_macros_plugin" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../pages/" class="md-tabs__link md-tabs__link--active">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tips/" class="md-tabs__link">
+        Faq
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../contribute/" class="md-tabs__link">
+      Contributing
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../changelog/" class="md-tabs__link">
+      Changelog
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../why/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="mkdocs-macros" class="md-nav__button md-logo" aria-label="mkdocs-macros" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    mkdocs-macros
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/fralau/mkdocs_macros_plugin" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          User Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          User Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pages/" class="md-nav__link">
+        Rich Markdown Pages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git_info/" class="md-nav__link">
+        Git information
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Writing modules
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Writing modules
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#location-of-the-modules" class="md-nav__link">
+    Location of the modules
+  </a>
+  
+    <nav class="md-nav" aria-label="Location of the modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-module" class="md-nav__link">
+    Local module
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preinstalled-modules-pluglets" class="md-nav__link">
+    Preinstalled modules (pluglets)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-define_env-function" class="md-nav__link">
+    The define_env() function
+  </a>
+  
+    <nav class="md-nav" aria-label="The define_env() function">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registration-of-variables-macros-and-filters" class="md-nav__link">
+    Registration of variables, macros and filters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definition-of-variablesmacrosfilters" class="md-nav__link">
+    Definition of variables/macros/filters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priority-of-variables" class="md-nav__link">
+    Priority of variables
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#content-of-the-env-object" class="md-nav__link">
+    Content of the env object
+  </a>
+  
+    <nav class="md-nav" aria-label="Content of the env object">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    Description
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-the-whole-config-file-mkdocsyaml" class="md-nav__link">
+    Accessing the whole config file (mkdocs.yaml)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manipulating-the-mkdocs-configuration-information" class="md-nav__link">
+    Manipulating the MkDocs configuration information
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validating-environment-variables-in-python-code" class="md-nav__link">
+    Validating environment variables in Python code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list-of-hook-functions-within-a-module" class="md-nav__link">
+    List of hook functions within a module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-the-module-as-a-package-module-subdirectory" class="md-nav__link">
+    Implementing the module as a package (module subdirectory)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-caution-about-security" class="md-nav__link">
+    A caution about security
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-declare_variables-function-deprecated" class="md-nav__link">
+    The declare_variables() function (DEPRECATED)
+  </a>
+  
+    <nav class="md-nav" aria-label="The declare_variables() function (DEPRECATED)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accessing-variables" class="md-nav__link">
+    Accessing variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-macros" class="md-nav__link">
+    Accessing macros
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pluglets/" class="md-nav__link">
+        Writing pluglets
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced/" class="md-nav__link">
+        Advanced usage
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Faq
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Faq" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Faq
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tips/" class="md-nav__link">
+        Tips and Tricks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../help/" class="md-nav__link">
+        Asking for help?
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why/" class="md-nav__link">
+        Why this project?
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#location-of-the-modules" class="md-nav__link">
+    Location of the modules
+  </a>
+  
+    <nav class="md-nav" aria-label="Location of the modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-module" class="md-nav__link">
+    Local module
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preinstalled-modules-pluglets" class="md-nav__link">
+    Preinstalled modules (pluglets)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-define_env-function" class="md-nav__link">
+    The define_env() function
+  </a>
+  
+    <nav class="md-nav" aria-label="The define_env() function">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registration-of-variables-macros-and-filters" class="md-nav__link">
+    Registration of variables, macros and filters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definition-of-variablesmacrosfilters" class="md-nav__link">
+    Definition of variables/macros/filters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priority-of-variables" class="md-nav__link">
+    Priority of variables
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#content-of-the-env-object" class="md-nav__link">
+    Content of the env object
+  </a>
+  
+    <nav class="md-nav" aria-label="Content of the env object">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    Description
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-the-whole-config-file-mkdocsyaml" class="md-nav__link">
+    Accessing the whole config file (mkdocs.yaml)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manipulating-the-mkdocs-configuration-information" class="md-nav__link">
+    Manipulating the MkDocs configuration information
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validating-environment-variables-in-python-code" class="md-nav__link">
+    Validating environment variables in Python code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list-of-hook-functions-within-a-module" class="md-nav__link">
+    List of hook functions within a module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-the-module-as-a-package-module-subdirectory" class="md-nav__link">
+    Implementing the module as a package (module subdirectory)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-caution-about-security" class="md-nav__link">
+    A caution about security
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-declare_variables-function-deprecated" class="md-nav__link">
+    The declare_variables() function (DEPRECATED)
+  </a>
+  
+    <nav class="md-nav" aria-label="The declare_variables() function (DEPRECATED)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accessing-variables" class="md-nav__link">
+    Accessing variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-macros" class="md-nav__link">
+    Accessing macros
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/fralau/mkdocs_macros_plugin/edit/master/webdoc/docs/macros.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+
+<h1 id="writing-modules">Writing modules</h1>
+<h2 id="introduction">Introduction</h2>
+<p><strong>Modules</strong> are libraries of macros, filters and variables, which
+can be used by your MkDocs project.</p>
+<p>Every module MUST contain a
+<a href="#the-define_env-function"><code>define_env()</code> function</a>, 
+which contains the declarations.</p>
+<h2 id="location-of-the-modules">Location of the modules</h2>
+<h3 id="local-module">Local module</h3>
+<p>By default, the Python code must go into <strong>one</strong> <code>main.py</code> file in the main
+website's project directory (generally beside the <code>mkdocs.yml</code> file).</p>
+<p><strong>If no <code>main</code> module is available, this is ignored.</strong></p>
+<p>If you wish, you can change the name of that module by adding a
+<code>module_name</code> entry to the <code>mkdocs.yml</code> file (no need to add the <code>.py</code>
+suffix):</p>
+<pre><code class="language-yaml">plugins:
+  ...
+  - macros:
+        module_name: source_code
+</code></pre>
+<p><strong> If you specify a module name, it must be available, or this will 
+raise an error.</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you wish, you can implement your module as a <a href="/#implementing-the-module-as-a-package-module-subdirectory">package (subdirectory)</a>
+instead of a single file. </p>
+</div>
+<h3 id="preinstalled-modules-pluglets">Preinstalled modules (pluglets)</h3>
+<p>If you wish to re-use modules across several documentation projects,
+you may want to pre-install them, turning them into <a href="../pluglets"><strong>pluglets</strong></a>.</p>
+<h2 id="the-define_env-function">The <code>define_env()</code> function</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>New, as of version 0.3.0</p>
+</div>
+<p>As a first step, you need declare a hook function called <code>define_env</code>,
+with one argument: <code>env</code> (object).
+This object contains the environment (variables, filters, etc.) of the
+templating tool (Jinja2). </p>
+<p>This is the information that will be used to generate the 
+pure Markdown pages, which will then be translated into HTML 
+(and displayed in a browser).</p>
+<h3 id="registration-of-variables-macros-and-filters">Registration of variables, macros and filters</h3>
+<p>The example should be self-explanatory:</p>
+<pre><code class="language-python">&quot;&quot;&quot;
+Basic example of a Mkdocs-macros module
+&quot;&quot;&quot;
+
+import math
+
+def define_env(env):
+    &quot;&quot;&quot;
+    This is the hook for defining variables, macros and filters
+
+    - variables: the dictionary that contains the environment variables
+    - macro: a decorator function, to declare a macro.
+    - filter: a function with one of more arguments,
+        used to perform a transformation
+    &quot;&quot;&quot;
+
+    # add to the dictionary of variables available to markdown pages:
+    env.variables['baz'] = &quot;John Doe&quot;
+
+    # NOTE: you may also treat env.variables as a namespace,
+    #       with the dot notation:
+    env.variables.baz = &quot;John Doe&quot;
+
+    @env.macro
+    def bar(x):
+        return (2.3 * x) + 7
+
+    # If you wish, you can  declare a macro with a different name:
+    def f(x):
+        return x * x
+    env.macro(f, 'barbaz')
+
+    # or to export some predefined function
+    env.macro(math.floor) # will be exported as 'floor'
+
+
+    # create a jinja2 filter
+    @env.filter
+    def reverse(x):
+        &quot;Reverse a string (and uppercase)&quot;
+        return x.upper()[::-1]
+</code></pre>
+<p>No special imports are required besides those you would need to write
+your functions (the <code>env</code> object does all the 'magic').</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can export (as variables, macros or filters)
+a wide range of objects, and their attributes
+will remain accessible to the jinja2 template via the standard Python
+convention, e.g. <code>{{ foo.bar }}</code> (see <a href="https://jinja.palletsprojects.com/en/2.11.x/templates/#variables">more
+information</a>)</p>
+</div>
+<h3 id="definition-of-variablesmacrosfilters">Definition of variables/macros/filters</h3>
+<ol>
+<li>You register a <strong>variable</strong> for MkDocs-macros 
+   by adding a key/value pair
+   to the <code>env.variables</code> dictionary (or namespace).
+   Variables are loaded with each page being rendered.</li>
+<li>You register a <strong>macro</strong> by <strong>decorating</strong> a function
+   with the expression <code>@env.macro</code> 
+   (or by adding it to the <code>env.macros</code> dictionary).<br />
+   Macros are loaded in the <a href="https://jinja.palletsprojects.com/en/2.11.x/api/#global-namespace">global namespace</a>
+of the Jinja2 environment.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">1</a></sup>.</li>
+<li>You register a <strong>filter</strong> by <strong>decorating</strong> a function
+   with the expression <code>@env.filter</code>
+   (or by adding it to the <code>env.filters</code> dictionary).</li>
+</ol>
+<p>This must be done <em>within</em> that <code>define_env()</code> function.
+You may, however, place any imports or other declarations
+outside of the function.</p>
+<h3 id="priority-of-variables">Priority of variables</h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In case of conflict, <strong>variables</strong> declared in the Python
+module will override
+those created by users in YAML files (<code>extra</code>). 
+This is a safety feature, to ensure that the maintainers of that file 
+will not accidentally break the setup defined
+by programmers in the module.</p>
+<p>Conversely, keep that fact in mind, 
+if users start complaining that an <code>extra</code> 
+value has a different value than the one which they expected!</p>
+</div>
+<h2 id="content-of-the-env-object">Content of the env object</h2>
+<h3 id="description">Description</h3>
+<p>The <code>env</code> object is used for <em>introspection</em>, i.e. is to get information
+on the project or page. </p>
+<p>Here is a list of commonly needed attributes (constants)
+or functions of that object:</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>variables</code></td>
+<td><em>attribute</em></td>
+<td>The namespace that contains the variables and macros that will be available in mardkown pages with <code>{{ ... }}</code> notation. This dictionary is initialized with the values contained in the <code>extra</code> section of the configuration file (and optionally, with external yaml files). This object is also accessible with the dot notation; e.g. <code>env.variables['foo']</code> is equivalent to <code>env.variables.foo</code>.</td>
+</tr>
+<tr>
+<td><code>macro</code></td>
+<td><em>function</em></td>
+<td>A decorator function that you can use to declare a Python function as a Jinja2 callable ('macro' for MkDocs).</td>
+</tr>
+<tr>
+<td><code>filters</code></td>
+<td><em>attribute</em></td>
+<td>A list list of jinja2 filters (default None)</td>
+</tr>
+<tr>
+<td><code>filter</code></td>
+<td><em>function</em></td>
+<td>A decorator for declaring a Python function as a jinja2 custom filter</td>
+</tr>
+<tr>
+<td><code>project_dir</code></td>
+<td><em>attribute</em></td>
+<td>The source directory of the MkDocs project (useful for finding or including other files)</td>
+</tr>
+<tr>
+<td><code>conf</code></td>
+<td><em>attribute</em></td>
+<td>The content of the <a href="https://www.mkdocs.org/user-guide/custom-themes/#config">config file</a> (<code>mkdocs.yaml</code>).</td>
+</tr>
+<tr>
+<td><code>config</code></td>
+<td><em>attribute</em></td>
+<td>This can be a useful object; it contains the global context for MkDocs]<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">2</a></sup>.</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td><em>attribute</em></td>
+<td>The information on the page being served (such as the title, etc.). For more information on its content, see <a href="https://www.mkdocs.org/user-guide/custom-themes/#page">MkDoc's description of the page object</a>.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Technical Note</p>
+<p><code>env</code> is essentially an instance of a subclass of the 
+MkDocs' <a href="https://www.mkdocs.org/user-guide/plugins/#baseplugin"><code>BasePlugin</code> class</a>, with some additional properties.
+Whatever you find in the <code>BasePlugin</code> class, you will find in the
+the <code>env</code> object.</p>
+</div>
+<h3 id="accessing-the-whole-config-file-mkdocsyaml">Accessing the whole config file (<code>mkdocs.yaml</code>)</h3>
+<p>Sometimes, you might need information from the <a href="(https://mkdocs.readthedocs.io/en/stable/user-guide/configuration)">whole config file 
+(<code>mkdocs.yaml</code>)</a>, e.g. <code>site_description</code>, <code>theme</code>, <code>copyright</code>, etc.</p>
+<p>The property <code>conf</code> of the <code>env</code> object contains that information.</p>
+<p>For example you could define such a function:</p>
+<pre><code class="language-python">@env.macro
+def site_info():
+    &quot;Return general info on the website (name, description and theme)&quot;
+    info = (env.conf['site_name'], env.conf['site_description'],
+            env.conf['theme'].name)
+    return &quot;%s/%s (theme: %s)&quot; % info
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Beware the change of name</p>
+<p>Beware that the what is usually called <code>config</code> is alled <code>env.conf</code>
+in the module. That is is because there is already <code>env.config</code>
+property as part of the <code>BasePlugin</code> class.</p>
+<p>Indeed, you will also find the same object under <code>env.variables.config</code>;
+in other words, it will be thus be accessible as <code>{{ config }}</code> 
+within the markdown pages.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In order obtain the documents directory (<code>docs</code>), you can
+use, within the Python module, the value: <code>env.conf['docs_dir']</code>.</p>
+</div>
+<h3 id="manipulating-the-mkdocs-configuration-information">Manipulating the MkDocs configuration information</h3>
+<p><code>env.config</code> is the object containing the <strong>global context</strong> for mkdocs,
+i.e. the data structures that are being manipulated to create the final
+HTML web site.</p>
+<p>You would have to explore it
+(using the <a href="https://www.mkdocs.org/user-guide/custom-themes/#global-context">MkDocs documentation on the global context</a>),
+but it contains the navigation (<code>env.conf['nav']</code>), as well
+as all objects that could be manipulated.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>env.config</code> is thus a superset of the <code>env.conf</code> object
+(which is <code>env.config['config']</code>).</p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>This object is <strong>not</strong> accessible as a variable from the markdown pages.
+Exposing it might encourage black magic.</p>
+</div>
+<h3 id="validating-environment-variables-in-python-code">Validating environment variables in Python code</h3>
+<p>By design, the call to <code>define_env()</code> is the last stage of the config
+process, to create the jinja2 environment that will interpret the jinja2
+directives inserted in the markdown code.</p>
+<p>It means in particular, that you can test the variables dictionary to
+validate its key/values, and to take appropriate action.</p>
+<p>For example, to check that root branches are present in the variables
+tree:</p>
+<pre><code class="language-python">MINIMAL_BRANCHES = ('foo', 'bar', 'baz')
+def define_env(env):
+    &quot;&quot;&quot;
+    This is the hook for defining variables, macros and filters
+    ...
+    &quot;&quot;&quot;
+
+    # initial checks
+    for branch in MINIMAL_BRANCHES:
+        if branch not in env.variables:
+            raise KeyError(&quot;Branch '%s' is not in environment variables! &quot;)
+</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This is a place where you could check that you code will not conflict
+with variables defined in the configuration files.</p>
+<p>You may also verify other aspects of the configuration file
+(<code>env.conf</code>). Note that the attributes of the <code>pluging-&gt;macro</code> branch
+are automatically checked by mkdocs (type and default value).</p>
+</div>
+<h2 id="list-of-hook-functions-within-a-module">List of hook functions within a module</h2>
+<p><code>define_env()</code> is not the only possible hook within a module.</p>
+<p>There are other functions available. Each is triggered by a <a href="https://www.mkdocs.org/user-guide/plugins/#events">MkDocs event</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+<th>Typical Use</th>
+<th>Triggered by MkDoc's event</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>define_env(env)</code></td>
+<td>Main function</td>
+<td><a href="#the-define_env-function">Create macros, filters, etc.</a></td>
+<td>on_config</td>
+</tr>
+<tr>
+<td><code>on_pre_page_macros(env)</code></td>
+<td>Executed just before the Jinja2 directives (markdown page) have been rendered</td>
+<td><a href="../advanced/#adding-post-build-files-to-the-html-website">Directly modify a markdown page</a></td>
+<td>on_page</td>
+</tr>
+<tr>
+<td><code>on_post_page_macros(env)</code></td>
+<td>Executed just after the Jinja2 code (markdown page) have been rendered</td>
+<td><a href="../advanced/#adding-post-build-files-to-the-html-website">Directly modify a markdown page</a></td>
+<td>on_page</td>
+</tr>
+<tr>
+<td><code>on_post_build(env)</code></td>
+<td>Executed after the html pages have been produced</td>
+<td><a href="../advanced/#adding-post-build-files-to-the-html-website">Add files to the website</a></td>
+<td>on_post_build</td>
+</tr>
+<tr>
+<td><code>declare_variables(variables, macro)</code></td>
+<td><em>Main function</em></td>
+<td><a href="#the-declare_variables-function-deprecated"><em>Deprecated (&lt; version 0.3.0)</em></a></td>
+<td><em>on_config</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="implementing-the-module-as-a-package-module-subdirectory">Implementing the module as a package (module subdirectory)</h2>
+<p>Instead of implementing the Python module as a file (typically <code>main.py</code>), 
+you can create a <em>package</em> (i.e. a <code>main</code> subdirectory). </p>
+<p>The Python rules for defining a package apply: particularly
+the dot (<code>.</code>) prefix for relative imports inside the package.</p>
+<p>The <code>define_env()</code> function should be accessible
+through the <code>__init__.py</code> file.</p>
+<p>A typical directory file could look like this:</p>
+<pre><code>main
+├── __init__.py
+├── util.py
+├── ...
+└── ...
+</code></pre>
+<p>The <code>__init__.py</code> file could look like this:</p>
+<pre><code class="language-python">from .util import foo, bar
+
+def define_env(env):
+    &quot;&quot;&quot;
+    This is the hook for defining variables, macros and filters
+    &quot;&quot;&quot;
+
+    @env.macro
+    def make_foo():
+        .......
+        return foo(s)
+
+    @env.macro
+    def get_bar(s):
+        s = bar(s, ...)
+        return s
+
+    ...
+
+</code></pre>
+<h2 id="a-caution-about-security">A caution about security</h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It is true that you are generating static pages.</p>
+<p>Nevertheless, think about potential side effects of macros
+(in case of error or
+abuse) or about the risks of exposing sensitive information,
+<strong>if the writers of markdown pages are different persons than
+the maintainers of the webserver</strong>.</p>
+</div>
+<p>Depending on your use case, you may want to give <strong>access to the shell</strong>
+(e.g. for a development team). Or else, may you <strong>want to "sandbox" your
+web pages</strong> (for business applications). </p>
+<h2 id="the-declare_variables-function-deprecated">The <code>declare_variables()</code> function (DEPRECATED)</h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code>declare_variables()</code> is the old paradigm, before 0.3.0
+and it is DEPRECATED. 
+Support for this call will be discontinued in a future version.</p>
+<p>Use instead the <code>define_env()</code> function.</p>
+</div>
+<p>As a first step, you need declare a hook function called
+<code>declare_variables</code>, with two arguments:</p>
+<ul>
+<li><code>variables</code>: the dictionary that contains the variables. It is
+    initialized with the values contained in the <code>extra</code> section of the
+    <code>mkdocs.yml</code> file.</li>
+<li><code>macro</code>: a decorator function that you can use to declare a Python
+    function as a Jinja2 callable ('macro' for MkDocs).</li>
+</ul>
+<p>The example should be self-explanatory:</p>
+<pre><code class="language-python">def declare_variables(variables, macro):
+    &quot;&quot;&quot;
+    This is the hook for the functions
+
+    - variables: the dictionary that contains the environment variables
+    - macro: a decorator function, to declare a macro.
+    &quot;&quot;&quot;
+
+    variables['baz'] = &quot;John Doe&quot;
+
+    @macro
+    def bar(x):
+        return (2.3 * x) + 7
+
+
+
+    # If you wish, you can  declare a macro with a different name:
+    def f(x):
+        return x * x
+
+    macro(f, 'barbaz')
+
+    # or to export some predefined function
+    import math
+    macro(math.floor) # will be exported as 'floor'
+</code></pre>
+<p>Your <strong>registration</strong> of variables or macros for MkDocs should be done
+inside that hook function. On the other hand, nothing prevents you from
+making imports or declarations <strong>outside</strong> of this function.</p>
+<blockquote>
+<p><strong>Note:</strong> You can export a wide range of objects, and their attributes
+remain accessible (see <a href="http://jinja.pocoo.org/docs/2.10/templates/#variables">more
+information</a>)</p>
+</blockquote>
+<h3 id="accessing-variables">Accessing variables</h3>
+<p>In case you need to access some variables defined in the config file
+(under <code>extra</code>), use the <code>variables</code> dictionary:</p>
+<p>Suppose you have:</p>
+<pre><code class="language-yaml">extra:
+    price: 12.50
+</code></pre>
+<p>You could write a macro:</p>
+<pre><code class="language-python">@macro
+def compare_price(my_price):
+    &quot;Compare the price to the price in config file&quot;
+    if my_price &gt; env.variables['price']:
+        return(&quot;Price is higher than standard&quot;)
+    else:
+        return(&quot;Price is lower than standard&quot;)
+</code></pre>
+<p>For your convenience, you may also use the dot notation:</p>
+<pre><code class="language-python">@macro
+def compare_price(my_price):
+    &quot;Compare the price to the price in config file&quot;
+    if my_price &gt; env.variables.price:
+        return(&quot;Price is higher than standard&quot;)
+    else:
+        return(&quot;Price is lower than standard&quot;)
+</code></pre>
+<h3 id="accessing-macros">Accessing macros</h3>
+<div class="admonition note">
+<p class="admonition-title">A macro is Python variable</p>
+<p>Note that since a macro is also a Python 
+variable (function), you can also "import"
+it in a module. 
+For example, <code>fix_url</code> is a predefined macro that fixes relative
+urls (when applicable) so that they point to the root of the site:</p>
+</div>
+<pre><code>fix_url = env.macros.fix_url
+my_url = fix_url(url)
+</code></pre>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:2">
+<p><em>From version 0.5.10.</em> Before that, macros were inserted in <code>env.variables</code>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:1">
+<p><code>env.config</code> versus <code>env.conf</code>: it is unhappy that <code>env.config</code> represents MkDocs whole context, whereas <code>env.conf</code> represents only the <code>config</code> (YAML) file (a subset). This ambiguity was born from the fact that MkDoc itself used <code>config</code> to represent the context, as a property of the <code>BasePlugin</code> object.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../git_info/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Git information" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Git information
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../pluglets/" class="md-footer__link md-footer__link--next" aria-label="Next: Writing pluglets" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Writing pluglets
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Laurent Franceschetti, 2020. This work is licensed under CC BY-SA 4.0.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.tabs"], "search": "../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e87a5f81.min.js"></script>
+      
+    
+  </body>
+</html>

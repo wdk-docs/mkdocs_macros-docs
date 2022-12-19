@@ -1,0 +1,1119 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A framework for macros and automation for mkdocs">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.7">
+    
+    
+      
+        <title>Rich Markdown Pages - mkdocs-macros</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.9d5733d3.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-to-write-enriched-markdown-pages" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="mkdocs-macros" class="md-header__button md-logo" aria-label="mkdocs-macros" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            mkdocs-macros
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Rich Markdown Pages
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/fralau/mkdocs_macros_plugin" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tips/" class="md-tabs__link">
+        Faq
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../contribute/" class="md-tabs__link">
+      Contributing
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../changelog/" class="md-tabs__link">
+      Changelog
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../why/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="mkdocs-macros" class="md-nav__button md-logo" aria-label="mkdocs-macros" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    mkdocs-macros
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/fralau/mkdocs_macros_plugin" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          User Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          User Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Rich Markdown Pages
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Rich Markdown Pages
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    Definitions
+  </a>
+  
+    <nav class="md-nav" aria-label="Definitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-variable" class="md-nav__link">
+    1. Variable
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-macro" class="md-nav__link">
+    2. Macro
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-filter" class="md-nav__link">
+    3. Filter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#batteries-included-defaut-objects" class="md-nav__link">
+    "Batteries included": defaut objects
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-variables" class="md-nav__link">
+    Configuration variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-page-level-variables-and-macros" class="md-nav__link">
+    Local (page-level) variables and macros
+  </a>
+  
+    <nav class="md-nav" aria-label="Local (page-level) variables and macros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-the-yaml-header-of-the-page" class="md-nav__link">
+    In the YAML header of the page
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-set-keyword" class="md-nav__link">
+    Using the set keyword
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#page-level-macros" class="md-nav__link">
+    Page-level macros
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditionals-loops-etc" class="md-nav__link">
+    Conditionals, loops, etc.
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git_info/" class="md-nav__link">
+        Git information
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macros/" class="md-nav__link">
+        Writing modules
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pluglets/" class="md-nav__link">
+        Writing pluglets
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced/" class="md-nav__link">
+        Advanced usage
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Faq
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Faq" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Faq
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tips/" class="md-nav__link">
+        Tips and Tricks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../help/" class="md-nav__link">
+        Asking for help?
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why/" class="md-nav__link">
+        Why this project?
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    Definitions
+  </a>
+  
+    <nav class="md-nav" aria-label="Definitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-variable" class="md-nav__link">
+    1. Variable
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-macro" class="md-nav__link">
+    2. Macro
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-filter" class="md-nav__link">
+    3. Filter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#batteries-included-defaut-objects" class="md-nav__link">
+    "Batteries included": defaut objects
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-variables" class="md-nav__link">
+    Configuration variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-page-level-variables-and-macros" class="md-nav__link">
+    Local (page-level) variables and macros
+  </a>
+  
+    <nav class="md-nav" aria-label="Local (page-level) variables and macros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-the-yaml-header-of-the-page" class="md-nav__link">
+    In the YAML header of the page
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-set-keyword" class="md-nav__link">
+    Using the set keyword
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#page-level-macros" class="md-nav__link">
+    Page-level macros
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditionals-loops-etc" class="md-nav__link">
+    Conditionals, loops, etc.
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/fralau/mkdocs_macros_plugin/edit/master/webdoc/docs/pages.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+
+<h1 id="how-to-write-enriched-markdown-pages">How to Write "Enriched" Markdown Pages</h1>
+<h2 id="definitions">Definitions</h2>
+<h3 id="1-variable">1. Variable</h3>
+<p>A <strong>variable</strong> is a predefined value.</p>
+<ul>
+<li>The primary source of variables is the <code>extra</code> namespace in the
+    <strong>config</strong> file (by default: <code>mkdocs.yml</code>).</li>
+<li>You can add variables in the Python module.</li>
+<li>Also <strong>local variables</strong> can be added directly to each
+    markdown page, thanks to jinja2 directives, called <code>set</code> (those
+    local variables are accessible by jinja2 directives, but not the
+    Python code).</li>
+</ul>
+<h3 id="2-macro">2. Macro</h3>
+<p>We call <strong>macros</strong>, Python functions (or callables) that will be
+used in jinja2 snippets within the markdown pages. A macro should
+return a <em>string</em> that can be plain, markdown or HTML.
+Each call to the macro in markdown page will be replaced by that result.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For more information on the full concept of a macro, 
+see <a href="../why/#use-case-overcoming-the-intrinsic-limitations-of-markdown-syntax">the detailed explanation</a>.</p>
+</div>
+<h3 id="3-filter">3. Filter</h3>
+<p>A custom <strong>filter</strong> is a Jinja2 concept. It is essentially a Python
+function used with a different syntax,
+e.g. <code>{{ 'my text ' | uppercase}}</code> (supposing there was a custom
+function called <code>uppercase</code> and declared as a filter). Just as a
+macro, a filter should return a <em>string</em> that can be plain, markdown
+or HTML.</p>
+<h2 id="batteries-included-defaut-objects">"Batteries included": defaut objects</h2>
+<p>The following objects are, in particular, available by default,
+with their set of attributes:</p>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>config</code></td>
+<td>The standard <a href="https://www.mkdocs.org/user-guide/configuration/#project-information">config</a> information on MkDocs' environment.</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td>Info on the current page (<a href="https://github.com/mkdocs/mkdocs/blob/master/mkdocs/structure/pages.py">source</a>)</td>
+</tr>
+<tr>
+<td><code>navigation</code></td>
+<td>List of all pages/sections of the website; sections are themselves list of pages; (<a href="https://github.com/mkdocs/mkdocs/blob/master/mkdocs/structure/nav.py">source</a>)</td>
+</tr>
+<tr>
+<td><code>environment</code></td>
+<td>Data on the system on which MkDocs is currently running.</td>
+</tr>
+<tr>
+<td><code>plugin</code></td>
+<td>Arguments of the macro plugin, in the config file</td>
+</tr>
+<tr>
+<td><code>git</code></td>
+<td>Information on the git version of the website (if part of a git repository)</td>
+</tr>
+<tr>
+<td><code>files</code></td>
+<td>The file structure (for advanced users who know how to manipulate the <code>mkdocs.structure.files.Files</code> object, as well as <code>mkdocs.structure.files.File</code> objects)</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<p>For example, </p>
+<ul>
+<li><code>{{ config.site_name }}</code> returns the main title of the
+website</li>
+<li><code>{{ environment.system }}</code> returns the name of the OS.</li>
+<li><code>{{ navigation.pages }}</code> returns a flattened list of all pages</li>
+<li><code>{{ plugin.module }}</code> name of the Python module</li>
+</ul>
+<p>To discover what each of these objects contain, you can use the <code>pretty</code>
+filter provided with the plugin, e.g.:</p>
+<pre><code>{{ context(page) | pretty }}
+</code></pre>
+<h2 id="configuration-variables">Configuration variables</h2>
+<p>To easily and quickly define custom variables, declare them in you
+<code>mkdocs.yml</code> file:</p>
+<pre><code class="language-yaml">extra:
+    price: 12.50
+    company:
+        name: Acme
+        address: ....
+        website: www.acme.com
+</code></pre>
+<p>In your markdown file:</p>
+<pre><code class="language-markdown">The price of the product is {{ price }}.
+
+See [more information on the website]({{ company.website }}).
+
+See &lt;a href=&quot;{{ company.website }}&quot;&gt;more information on the website&lt;/a&gt;.
+</code></pre>
+<h2 id="local-page-level-variables-and-macros">Local (page-level) variables and macros</h2>
+<p>If you really need a variable or macro that needs to remain <strong>local</strong> to
+the markdown page, you can use a standard Jinja2 declaration.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Note that the <code>context()</code> macro (for listing variables)
+will <strong>not</strong> display variables defined at page level. </p>
+</div>
+<h3 id="in-the-yaml-header-of-the-page">In the YAML header of the page</h3>
+<p>Variables defined in the YAML header of the page are accessible as themselves
+and via the <code>page.meta</code> object.</p>
+<p>For example, if the the header is as follows:</p>
+<pre><code class="language-yaml">---
+title: My special title
+bottles:
+  whine: 500
+  beer: 123
+---
+</code></pre>
+<p>Then you can access the content of the YAML header in two ways:</p>
+<ol>
+<li>By name e.g. <code>{{ title }}</code> and <code>{{ bottles.whine }}</code></li>
+<li>Explicitly, i.e. using the dot notation, e.g. 
+<code>{{ page.meta.title }}</code> and <code>{{ page.meta.bottles.whine }}</code>.</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><code>{{ page.meta }}</code> gives the content of the header.
+If you wish to have it typed in a nice tabular form, you can use:
+<code>{{ context(page.meta) | pretty }}</code></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Caution</p>
+<p>If variables in the metadata have the same name as variables
+already defined (suche as <code>extra</code>, <code>config</code>, etc.) those will
+be overwritten, but for this page only.</p>
+</div>
+<h3 id="using-the-set-keyword">Using the <code>set</code> keyword</h3>
+<p>Variables can be defined in the template with the <code>set</code> keyword, e.g.:</p>
+<pre><code class="language-jinja2">{% set acme = 'Acme Company Ltd' %}
+
+Please buy the great products from {{ acme }}!
+</code></pre>
+<p>Contrary to variables defined in the <code>extra</code> section of the <code>mkdocs.yml</code>
+file, they are accessible only within the specific page. They are not
+accessible from the python code.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you need reference information on the page, there is a <code>page</code> object 
+e.g.: <code>{{ page.title }}</code>,
+<code>{{ page.url }}</code>, <code>{{ page.is_homepage }}</code>, etc.</p>
+</div>
+<h3 id="page-level-macros">Page-level macros</h3>
+<p>It is possible to write <strong>Jinja2 macros</strong> 
+written with the Jinja2 syntax (instead of a Python module). 
+This allows you benefit from the power of that language
+for the manipulation of strings.</p>
+<p>Here is an example of Jinja2 macro, 
+from the official documentation:</p>
+<pre><code class="language-jinja2">{% macro input(name, value='', type='text', size=20) -%}
+    &lt;input type=&quot;{{ type }}&quot; name=&quot;{{ name }}&quot; value=&quot;{{
+        value|e }}&quot; size=&quot;{{ size }}&quot;&gt;
+{%- endmacro %}
+</code></pre>
+<p>Which can be called (within the page) as:</p>
+<pre><code class="language-jinja2">&lt;p&gt;{{ input('username') }}&lt;/p&gt;
+&lt;p&gt;{{ input('password', type='password') }}&lt;/p&gt;
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All definitions will remain <strong>local</strong> to the page.</p>
+<p>It is possible to define Jinja2 macros in a separate file,
+and to import them from there in any page, using the
+<code>{% import ..}</code> directive.
+See explanations under <a href="../advanced/#importing-macros-from-a-separate-file">Advanced Usage</a>.</p>
+</div>
+<h2 id="conditionals-loops-etc">Conditionals, loops, etc.</h2>
+<p>With the macros plugin, you may use the <a href="https://jinja.palletsprojects.com/en/2.11.x/templates/#if">conditional</a>
+statement of Jinja2, e.g.</p>
+<pre><code class="language-jinja2">### My title
+{% if  == 'bar' %}
+We will write this **first version**
+{% else %}
+_Second version_
+{% endif %}
+</code></pre>
+<p>You may produce Markdown or any mix of Markdown, HTML, css
+and even javascript that you wish.</p>
+<p>Similarly, you could use <a href="https://jinja.palletsprojects.com/en/2.11.x/templates/#for">for loops</a>:</p>
+<pre><code class="language-jinja2">### List of users
+{% set users = ['joe', 'jill', 'david', 'sam'] %}
+{% for user in users %}
+1. {{ user }}
+{% endfor %}
+</code></pre>
+<p>In fact, you can do <a href="http://jinja.pocoo.org/docs/2.11/templates/">all the fancy footwork you want with
+Jinja2</a>!</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Home
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../git_info/" class="md-footer__link md-footer__link--next" aria-label="Next: Git information" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Git information
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Laurent Franceschetti, 2020. This work is licensed under CC BY-SA 4.0.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.tabs"], "search": "../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e87a5f81.min.js"></script>
+      
+    
+  </body>
+</html>
