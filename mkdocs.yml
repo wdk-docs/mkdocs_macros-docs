@@ -1,11 +1,11 @@
 site_name: mkdocs-macros
-site_description: A framework for macros and automation for mkdocs
+site_description: 一个用于宏和mkdocs自动化的框架
 docs_dir: source # indispensable or readthedocs will fail
 site_dir: docs
 theme:
   # name: readthedocs
   name: material
-  language: en
+  language: zh
   features:
     - navigation.sections
     - navigation.tabs
@@ -17,22 +17,22 @@ repo_url: https://github.com/fralau/mkdocs_macros_plugin
 edit_uri: edit/master/webdoc/docs/
 copyright: © Laurent Franceschetti, 2020. This work is licensed under CC BY-SA 4.0.
 nav:
-  - Home: index.md
-  - "User Guide":
-      - "Rich Markdown Pages": pages.md
-      - "Git information": git_info.md
-      - "Writing modules": macros.md
-      - Writing pluglets: pluglets.md
-      - "Advanced usage": advanced.md
-  - Faq:
-      - "Tips and Tricks": tips.md
-      - "Troubleshooting": troubleshooting.md
-      - "Asking for help?": help.md
-  - Contributing: contribute.md
-  - Changelog: changelog.md
-  - About:
-      - "Why this project?": why.md
-      - License: license.md
+  - 主页: index.md
+  - "用户指南":
+      - "丰富的Markdown页面": pages.md
+      - "Git信息": git_info.md
+      - "编写模块": macros.md
+      - 写作pluglet: pluglets.md
+      - "高级用法": advanced.md
+  - 常见问题解答:
+      - "小贴士和技巧": tips.md
+      - "故障排除": troubleshooting.md
+      - "寻求帮助?": help.md
+  - 贡献: contribute.md
+  - 更新日志: changelog.md
+  - 关于:
+      - "为什么要做这个项目?": why.md
+      - 许可证: license.md
 
 markdown_extensions:
   - admonition

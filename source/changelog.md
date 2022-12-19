@@ -1,6 +1,6 @@
 # Changelog: mkdocs-macros
 
-All notable changes to this project will be documented in this file.
+这个项目所有值得注意的变化都将记录在这个文件中。
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
